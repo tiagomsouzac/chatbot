@@ -1,0 +1,11 @@
+# env
+.env
+.env.*
+!.env.example
+
+
+# dependences
+/node_modules
+
+# build
+/dist
