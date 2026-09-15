@@ -1,11 +1,5 @@
-# env
-.env
-.env.*
-!.env.example
-
-
-# dependences
+/.next
 /node_modules
 
-# build
-/dist
+/package-lock.json
+package.json
