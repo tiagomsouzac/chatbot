@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #e8e8e3;
+  --muted: #858883;
+  --line: #363936;
+  --panel: #151715;
+  --panel-soft: #1c1f1c;
+  --accent: #c9f27b;
+  --accent-ink: #17200c;
+}
+
+* { box-sizing: border-box; }
+
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #0e100f;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+button, textarea { font: inherit; }
+
+.chat-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px),
+    #0e100f;
+  background-size: 42px 42px;
+}
+
+.chat-panel {
+  width: min(920px, 100%);
+  height: min(760px, calc(100vh - 64px));
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(21, 23, 21, .96);
+  box-shadow: 0 22px 80px rgba(0, 0, 0, .32);
+}
+
+.chat-header {
+  display: flex;
+  align-items: flex-start;
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow, .message-label, .composer-hint {
+  margin: 0;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+h1, h2, p { margin-top: 0; }
+
+h1 {
+  margin: 10px 0 0;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 500;
+  letter-spacing: -.03em;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 30px 32px;
+}
+
+.empty-state {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.empty-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 22px;
+  color: var(--accent-ink);
+  background: var(--accent);
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.empty-state h2 { margin-bottom: 8px; font-size: 22px; font-weight: 500; }
+.empty-state p { color: var(--muted); }
+
+.message {
+  max-width: 76%;
+  margin-bottom: 26px;
+  animation: appear .25s ease-out both;
+}
+
+.message.user { margin-left: auto; text-align: right; }
+.message.assistant { margin-right: auto; }
+.message-label { display: block; margin-bottom: 8px; }
+.message p { margin-bottom: 0; line-height: 1.65; white-space: pre-wrap; }
+.message.user p {
+  display: inline-block;
+  padding: 12px 15px;
+  color: var(--accent-ink);
+  background: var(--accent);
+  text-align: left;
+}
+
+.typing-indicator { color: var(--muted); font-size: 13px; }
+.typing-indicator span { display: inline-block; animation: blink 1s infinite; }
+
+.composer { display: flex; gap: 12px; padding: 18px 32px 10px; border-top: 1px solid var(--line); }
+.composer textarea {
+  min-height: 48px;
+  flex: 1;
+  resize: none;
+  padding: 14px 15px;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  outline: 0;
+  background: var(--panel-soft);
+  line-height: 1.35;
+}
+.composer textarea:focus { border-color: var(--accent); }
+.composer button {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  gap: 16px;
+  padding: 0 16px;
+  color: var(--accent-ink);
+  border: 0;
+  background: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.composer button:disabled { opacity: .35; cursor: not-allowed; }
+.composer-hint { padding: 0 32px 22px; text-align: right; font-size: 9px; }
+
+@keyframes appear { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+
+@media (max-width: 640px) {
+  .chat-shell { padding: 0; }
+  .chat-panel { height: 100vh; min-height: 0; border-right: 0; border-left: 0; }
+  .chat-header { padding: 22px 20px; }
+  .message-list { padding: 24px 20px; }
+  .message { max-width: 92%; }
+  .composer { padding: 14px 20px 8px; }
+  .composer-hint { padding: 0 20px 16px; }
+}
