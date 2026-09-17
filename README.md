@@ -12,7 +12,7 @@ Aplicação de chat com Google Gemini.
 ### Baixar o projeto
 
 ```powershell
-git clone <URL_DO_REPOSITORIO> chatbot
+git clone <https://github.com/tiagomsouzac/chatbot> chatbot
 cd chatbot
 ```
 
@@ -68,7 +68,7 @@ Chat application using Google Gemini.
 ### Download
 
 ```powershell
-git clone <REPOSITORY_URL> chatbot
+git clone <https://github.com/tiagomsouzac/chatbot> chatbot
 cd chatbot
 ```
 
